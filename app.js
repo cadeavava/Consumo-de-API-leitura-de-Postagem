@@ -24,6 +24,11 @@ angular.module('blog').controller('Rest', function ($scope, $http, $window) {
       $http.get('https://api-fake-blog.onrender.com/postagens')
         .then(function(response) {
           $scope.publicacao = response.data[index];
+
+          if ($scope.publicacao.postDate.length < 10) {
+            console.log($scope.publicacao.postDate.length); 
+            $scope.publicacao.postDate = "0" + $scope.publicacao.postDate; 
+          }
         })
         .catch(function(error) {
           console.error('Erro ao carregar postagem:', error);
